@@ -216,7 +216,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
 #### Big Image
 
-![Big Image](img-01.jpg)
+![Big Image](https://cdn-images.iuu.ai/4af0fd12-c285-48d6-8d35-faf643546786.png)
 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
