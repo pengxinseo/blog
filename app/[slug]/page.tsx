@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { notFound } from 'next/navigation'
 
 import { MDXContent } from '@/components/mdx-content'
