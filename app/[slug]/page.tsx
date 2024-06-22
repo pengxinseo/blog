@@ -5,7 +5,7 @@ import { MDXContent } from '@/components/mdx-content'
 import { pages } from '#site/content'
 
 import type { Metadata } from 'next'
-
+//牛逼
 type Props = {
   params: {
     slug: string
