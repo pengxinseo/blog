@@ -1,47 +1,65 @@
-`use client`;
-export const runtime = 'edge';
-import { posts } from "#site/content";
-import { PostItem } from "@/components/post-item";
-import { sortPosts } from "@/lib/utils";
+import { compareDesc } from 'date-fns';
+import { Metadata } from 'next';
+import { useLocale, useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-export default async function BlogPage() {
-  const sortedPosts = sortPosts(posts.filter((post) => post.published));
-  const displayPosts = sortedPosts;
+import GradientText from '@/components/ui/gradient-text';
+import { allPosts } from '@/content';
+import { getLocalizedUrl } from '@/utils/url';
 
-  return (
-    <div className="container max-w-4xl py-6 lg:py-10">
-      <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-        <div className="flex-1 space-y-4">
-          <h1 className="inline-block font-black text-4xl lg:text-5xl">Blog</h1>
-          <p className="text-xl text-muted-foreground">
-            My ramblings on all things web dev.
-          </p>
-        </div>
-      </div>
-      <div className="grid grid-cols-12 gap-3 mt-8">
-        <div className="col-span-12 col-start-1 sm:col-span-8">
-          <hr />
-          {displayPosts?.length > 0 ? (
-            <ul className="flex flex-col">
-              {displayPosts.map((post) => {
-                const { slug, date, title, description } = post;
-                return (
-                  <li key={slug}>
-                    <PostItem
-                      slug={slug}
-                      date={date}
-                      title={title}
-                      description={description}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
-            <p>Nothing to see here yet</p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
+import FilterPosts from './filter-posts';
+
+export const generateMetadata = async ({
+	params,
+}: {
+	params: { locale: Locale };
+}): Promise<Metadata> => {
+	const t = await getTranslations();
+	const url = getLocalizedUrl({
+		locale: params.locale,
+		pathname: 'blog',
+	});
+
+	return {
+		title: t('common.blog'),
+		description: t('blogPage.description'),
+		alternates: {
+			canonical: url,
+		},
+	};
+};
+
+const BlogPage = () => {
+	const t = useTranslations();
+	const locale = useLocale();
+	const posts = allPosts
+		.filter((post) => post.language === locale)
+		.sort((a, b) =>
+			compareDesc(new Date(a.publishedAt), new Date(b.publishedAt)),
+		);
+
+	return (
+		<>
+			<GradientText
+				as='h1'
+				className='animate-fade-in text-2xl font-bold tracking-tight'
+			>
+				{t('common.blog')}
+			</GradientText>
+			<p className='mt-1 animate-fade-in text-foreground/80 animation-delay-1'>
+				{t.rich('blogPage.subTitle', {
+					highlight: () => (
+						<span className='font-medium text-primary'>{posts.length}</span>
+					),
+				})}
+			</p>
+			<FilterPosts
+				posts={posts}
+				placeholder={t('common.placeholder')}
+				remindText={t('common.noResults')}
+			/>
+		</>
+	);
+};
+
+export default BlogPage;

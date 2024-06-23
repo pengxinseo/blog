@@ -1,82 +1,57 @@
-"use client";
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import React from 'react';
+import { RiMenu2Fill } from 'react-icons/ri';
 
-import { useState } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import { Button } from "./ui/button";
-import { Menu } from "lucide-react";
-import Link, { LinkProps } from "next/link";
-import { useRouter } from "next/navigation";
-import { Icons } from "./icons";
-import { siteConfig } from "@/config/site";
+import { LanguageMenuItem } from '@/components/language-dropdown';
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { navLinks } from '@/config/nav-links';
+import { locales } from '@/lib/navigation';
 
-export function MobileNav() {
-  const [open, setOpen] = useState(false);
+const MobileNav = () => {
+	const t = useTranslations('common');
 
-  return (
-    <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
-        <Button variant="outline" className="w-10 px-0 sm:hidden">
-          <Menu className="h-5 w-5" />
-          <span className="sr-only">Toggle Theme</span>
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="right">
-        <MobileLink
-          onOpenChange={setOpen}
-          href="/"
-          className="flex items-center"
-        >
-          <Icons.logo className="mr-2 h-4 w-4" />
-          <span className="font-bold">{siteConfig.name}</span>
-        </MobileLink>
-        <div className="flex flex-col gap-3 mt-3">
-          <MobileLink onOpenChange={setOpen} href="/blog">
-            Blog
-          </MobileLink>
-          <MobileLink onOpenChange={setOpen} href="/rag">
-            RAG
-          </MobileLink>
-          <Link target="_blank" rel="noreferrer" href={siteConfig.links.github}>
-            GitHub
-          </Link>
-          <Link
-            target="_blank"
-            rel="noreferrer"
-            href={siteConfig.links.twitter}
-          >
-            Twitter
-          </Link>
-        </div>
-      </SheetContent>
-    </Sheet>
-  );
-}
+	return (
+		<DropdownMenu>
+			<DropdownMenuTrigger className='block rounded p-2 outline-none transition-colors hover:bg-accent/60 md:hidden'>
+				<span className='sr-only'>Toggle menu</span>
+				<RiMenu2Fill />
+			</DropdownMenuTrigger>
+			<DropdownMenuContent align='end'>
+				{navLinks.map((link) => (
+					<DropdownMenuItem
+						key={link.title}
+						asChild
+					>
+						<Link
+							className='w-full gap-2 rounded px-2 py-1.5'
+							href={link.href}
+						>
+							{link.icon}
+							{t(link.title)}
+						</Link>
+					</DropdownMenuItem>
+				))}
+				<DropdownMenuSeparator />
+				<DropdownMenuLabel className='font-normal text-foreground/60'>
+					Translations
+				</DropdownMenuLabel>
+				{locales.map((locale) => (
+					<LanguageMenuItem
+						key={locale}
+						locale={locale}
+					/>
+				))}
+			</DropdownMenuContent>
+		</DropdownMenu>
+	);
+};
 
-interface MobileLinkProps extends LinkProps {
-  children: React.ReactNode;
-  onOpenChange?: (open: boolean) => void;
-  className?: string;
-}
-
-function MobileLink({
-  href,
-  onOpenChange,
-  children,
-  className,
-  ...props
-}: MobileLinkProps) {
-  const router = useRouter();
-  return (
-    <Link
-      href={href}
-      onClick={() => {
-        router.push(href.toString());
-        onOpenChange?.(false);
-      }}
-      className={className}
-      {...props}
-    >
-      {children}
-    </Link>
-  );
-}
+export default MobileNav;
