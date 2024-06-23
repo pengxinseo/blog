@@ -4,5 +4,11 @@ import config from '../velite.config'
 
 type Collections = typeof config.collections
 
-export type Post = Collections['posts']['schema']['_output']
-export declare const posts: Post[]
+export type Post = Collections['allPosts']['schema']['_output']
+export declare const allPosts: Post[]
+
+export type Project = Collections['allProjects']['schema']['_output']
+export declare const allProjects: Project[]
+
+export type Page = Collections['allPages']['schema']['_output']
+export declare const allPages: Page[]

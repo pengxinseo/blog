@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Personal Website",
+    "slug": "personal-website",
+    "description": "My personal website built with TypeScript, Next.js 14, and Tailwind CSS.",
+    "imageUrl": "/projects/personal-website.jpg",
+    "demoUrl": "https://jinrup.vercel.app",
+    "repoUrl": "https://github.com/tommm2/jinrup.dev",
+    "repoName": "jinrup.dev",
+    "language": "en",
+    "content": "const{jsx:e}=arguments[0];function _createMdxContent(t){const n={p:\"p\",...t.components};return e(n.p,{children:\"I decided to create a developer portfolio after seeing many others do the same. This exercise allows me to practice my writing skills and document my learning process.\"})}return{default:function(t={}){const{wrapper:n}=t.components||{};return n?e(n,{...t,children:e(_createMdxContent,{...t})}):_createMdxContent(t)}};",
+    "permalink": "/projects/personal-website"
+  },
+  {
+    "title": "個人網站",
+    "slug": "personal-website",
+    "description": "使用 TypeScript、Next.js 14 和 Tailwind CSS 建構的個人網站。",
+    "imageUrl": "/projects/personal-website.jpg",
+    "demoUrl": "https://jinrup.vercel.app",
+    "repoUrl": "https://github.com/tommm2/jinrup.dev",
+    "repoName": "jinrup.dev",
+    "language": "zh-TW",
+    "content": "const{jsx:n}=arguments[0];function _createMdxContent(e){const t={p:\"p\",...e.components};return n(t.p,{children:\"看到很多人做了 developer portfoilo，我也決定做一個，鍛鍊自己的文筆，並記錄自己的學習過程。\"})}return{default:function(e={}){const{wrapper:t}=e.components||{};return t?n(t,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};",
+    "permalink": "/projects/personal-website"
+  }
+]
