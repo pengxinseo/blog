@@ -26,10 +26,10 @@ const FilterPosts = ({
 			<div className='relative mt-4 animate-fade-in animation-delay-2'>
 				<RiSearch2Line className='absolute left-2 top-2.5 size-5 text-foreground/60' />
 				<input
-					className='w-full rounded-md border border-border bg-input/40 p-2 pl-8 text-sm outline-none ring-blue-500/20 duration-300 placeholder:text-foreground/80 focus:border-primary focus:ring-4 sm:w-[18.75rem]'
+					className=' w-full rounded-md border border-border bg-input/40 p-2 pl-8 text-sm outline-none ring-blue-500/20 duration-300 placeholder:text-foreground/80 focus:border-primary focus:ring-4 sm:w-[18.75rem]'
 					placeholder={placeholder}
 					onChange={(e) => setQuery(e.target.value)}
-				/>
+				/>  
 			</div>
 			<div className='mt-16 flex animate-fade-in flex-col gap-8 animation-delay-3'>
 				{

@@ -76,7 +76,7 @@ const BlogPostLayout = ({ params }: BlogPostLayoutProps) => {
 
 	if (!post) {
 		notFound();
-	}
+	} 
 
 	const { title, language, publishedAt, slug } = post;
 
