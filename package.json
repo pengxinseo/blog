@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+<<<<<<< HEAD
     "lint": "next lint"
+=======
+    "lint": "next lint",
+    "pages:build": "npx @cloudflare/next-on-pages"
+>>>>>>> 6a04573c3149dde65d80c5fa07e2d442219d80b0
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.0.5",
@@ -23,6 +28,7 @@
     "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.11.3",
     "@tailwindcss/typography": "0.5.12",
     "@types/node": "^20",
     "@types/react": "^18",
