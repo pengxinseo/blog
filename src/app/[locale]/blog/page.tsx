@@ -53,11 +53,6 @@ const BlogPage = () => {
 					),
 				})}
 			</p>
-			<FilterPosts
-				posts={posts}
-				placeholder={t('common.placeholder')}
-				remindText={t('common.noResults')}
-			/>
 		</>
 	);
 };
