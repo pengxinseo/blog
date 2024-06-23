@@ -7,7 +7,7 @@
 		"build": "prisma generate && npm velite build && next build",
 		"start": "next start",
 		"lint": "next lint",
-		"pages:build": "npx @cloudflare/next-on-pages"
+		"pages:build": "prisma generate && npm velite build && next build"
 	},
 	"dependencies": {
 		"@cloudflare/next-on-pages": "^1.11.3",
