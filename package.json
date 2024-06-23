@@ -6,9 +6,11 @@
 		"dev": "pnpm velite --watch & next dev",
 		"build": "prisma generate && npm velite build && next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"pages:build": "npx @cloudflare/next-on-pages"
 	},
 	"dependencies": {
+		"@cloudflare/next-on-pages": "^1.11.3",
 		"@giscus/react": "^2.3.0",
 		"@mdx-js/react": "^3.0.1",
 		"@prisma/client": "^4.15.0",
