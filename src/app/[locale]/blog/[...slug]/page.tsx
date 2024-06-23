@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { posts } from "#site/content";
 import { notFound } from "next/navigation";
 import { MDXContent } from "@/components/mdx-components";

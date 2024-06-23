@@ -1,5 +1,5 @@
 `use client`;
-
+export const runtime = 'edge';
 import { posts } from "#site/content";
 import { PostItem } from "@/components/post-item";
 import { sortPosts } from "@/lib/utils";
