@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "./deploy.sh"
+    "pages:build": "npx @cloudflare/next-on-pages"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.0.5",
@@ -24,6 +24,7 @@
     "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.11.3",
     "@tailwindcss/typography": "0.5.12",
     "@types/node": "^20",
     "@types/react": "^18",
