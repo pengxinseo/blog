@@ -5,27 +5,27 @@ import { MDXContent } from "@/components/mdx-components";
 
 interface PostPageProps {
   params: {
-    slug: string[];
+    slug: string;
   };
 }
 
-async function getPostFromParams(params: PostPageProps["params"]) {
-  const slug = 'rag-text-splitter'
+async function getPostFromSlug(slug: string) {
   const post = posts.find((post) => post.slugAsParams === slug);
-
   return post;
 }
 
+// 只生成特定 slug 的静态路径
 export async function generateStaticParams(): Promise<
   PostPageProps["params"][]
 > {
-  return posts.map((post: { slugAsParams: string }) => ({
-    slug: post.slugAsParams.split("/"),
-  }));
+  return [
+    { slug: 'rag-text-splitter' }
+  ];
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const post = await getPostFromParams(params);
+  const { slug } = params;
+  const post = await getPostFromSlug(slug);
 
   if (!post || !post.published) {
     notFound();
