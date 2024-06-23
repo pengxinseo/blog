@@ -14,7 +14,7 @@ async function getPostFromSlug(slug: string) {
   return post;
 }
 
-// 只生成特定 slug 的静态路径
+// 只生成特定 slug 的静态路径 测试
 export async function generateStaticParams(): Promise<
   PostPageProps["params"][]
 > {
