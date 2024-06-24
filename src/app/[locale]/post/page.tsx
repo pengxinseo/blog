@@ -1,3 +1,4 @@
+
 export const runtime = 'edge';
 import posts from "../../../../db/posts.json"; // 导入 JSON 数据
 import MdxRenderer from '@/components/MdxRenderer';
@@ -25,4 +26,15 @@ export default function Post() {
       <MdxRenderer source={post.content} />
     </div>
   );
+}
+
+export const getStaticPaths = ({params: {locale = ''}}) => {
+  return {
+    paths: [
+      // if no `locale` is provided only the defaultLocale will be generated
+      { params: { slug: 'post-1' }, locale: 'en-US' },
+      { params: { slug: 'post-1' }, locale: 'fr' },
+    ],
+    fallback: true,
+  }
 }
