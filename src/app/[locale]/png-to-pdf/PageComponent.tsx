@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import MdxRenderer from '@/components/MdxRenderer';
 import { notFound } from 'next/navigation';
 
