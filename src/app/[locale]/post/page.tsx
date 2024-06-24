@@ -93,7 +93,7 @@ export default function Post() {
       <h1 className="text-4xl font-bold pb-6 border-b mb-10">
         {post.title}
       </h1>
-      <MdxRenderer source={post.content}></MdxRenderer>
+      {post.content}
     </div>
   );
 }
