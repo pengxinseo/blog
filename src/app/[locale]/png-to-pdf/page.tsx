@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import PageComponent from "./PageComponent";
 import { queryPostBySlug } from '../../../../db/queries';
 import MdxRenderer from '@/components/MdxRenderer';
