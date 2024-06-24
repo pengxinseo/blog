@@ -1,9 +1,9 @@
-"use client";
 export const runtime = 'edge';
 import posts from "../../../../db/posts.json"; // 导入 JSON 数据
 import MdxRenderer from '@/components/MdxRenderer';
-import ReactMarkdown from 'react-markdown';
+
 export default function Post() {
+  const components = {}; // 
   // 这里假设 slug 是从 URL 参数中获取的
   const slug = "advanced-techniques-for-cms-security";
 
@@ -14,7 +14,7 @@ export default function Post() {
   if (!post) {
     return <div>文章未找到</div>;
   }
-
+  const blog = post.content
   // 渲染文章内容
   return (
     <div className='p-32'>
@@ -22,8 +22,7 @@ export default function Post() {
       <h1 className="text-4xl font-bold pb-6 border-b mb-10">
         {post.title}
       </h1>
-      {/* <MdxRenderer source={post.content}></MdxRenderer> */}
-      <ReactMarkdown>{post.content}</ReactMarkdown>;
+      <MdxRenderer source={post.content} />
     </div>
   );
 }
