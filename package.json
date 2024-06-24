@@ -5,7 +5,7 @@
   "scripts": {
     "export-posts": "node scripts/exportPosts.js",
     "dev": "npm run export-posts && next dev",
-    "build": "next build",
+    "build": "npm run export-posts && next build",
     "start": "next start",
     "lint": "next lint",
     "pages:build": "npx @cloudflare/next-on-pages"
