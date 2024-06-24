@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import { notFound } from 'next/navigation';
 import { queryAllPosts, queryPostBySlug } from '../../../../../db/queries';
 import MdxRenderer from '@/components/MdxRenderer';
