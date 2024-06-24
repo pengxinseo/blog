@@ -1,5 +1,5 @@
+"use client";
 export const runtime = 'edge';
-
 import posts from "../../../../db/posts.json"; // 导入 JSON 数据
 import MdxRenderer from '@/components/MdxRenderer';
 export default function Post() {
@@ -21,7 +21,7 @@ export default function Post() {
       <h1 className="text-4xl font-bold pb-6 border-b mb-10">
         {post.title}
       </h1>
-      {post.content}
+      <MdxRenderer source={post.content}></MdxRenderer>
     </div>
   );
 }
