@@ -2,6 +2,7 @@
 export const runtime = 'edge';
 import posts from "../../../../db/posts.json"; // 导入 JSON 数据
 import MdxRenderer from '@/components/MdxRenderer';
+import ReactMarkdown from 'react-markdown';
 export default function Post() {
   // 这里假设 slug 是从 URL 参数中获取的
   const slug = "advanced-techniques-for-cms-security";
@@ -21,7 +22,8 @@ export default function Post() {
       <h1 className="text-4xl font-bold pb-6 border-b mb-10">
         {post.title}
       </h1>
-      <MdxRenderer source={post.content}></MdxRenderer>
+      {/* <MdxRenderer source={post.content}></MdxRenderer> */}
+      <ReactMarkdown>{post.content}</ReactMarkdown>;
     </div>
   );
 }
