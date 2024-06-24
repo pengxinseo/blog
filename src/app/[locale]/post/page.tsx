@@ -1,12 +1,12 @@
 
 export const runtime = 'edge';
 import posts from "../../../../db/posts.json"; // 导入 JSON 数据
-import MdxRenderer from '@/components/MdxRenderer';
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 export default function Post() {
   const components = {}; // 
   // 这里假设 slug 是从 URL 参数中获取的
-  const slug = "advanced-techniques-for-cms-security";
+  const slug = "best-practices-for-cms-security";
 
   // 根据 slug 查找文章
   const post = posts.find((p) => p.slug === slug);
@@ -15,7 +15,7 @@ export default function Post() {
   if (!post) {
     return <div>文章未找到</div>;
   }
-  const blog = post.content
+
   // 渲染文章内容
   return (
     <div className='p-32'>
@@ -23,18 +23,9 @@ export default function Post() {
       <h1 className="text-4xl font-bold pb-6 border-b mb-10">
         {post.title}
       </h1>
-      <MdxRenderer source={post.content} />
+      <MDXRemote
+      source={post.content}
+    />
     </div>
   );
-}
-
-export const getStaticPaths = ({params: {locale = ''}}) => {
-  return {
-    paths: [
-      // if no `locale` is provided only the defaultLocale will be generated
-      { params: { slug: 'post-1' }, locale: 'en-US' },
-      { params: { slug: 'post-1' }, locale: 'fr' },
-    ],
-    fallback: true,
-  }
 }
