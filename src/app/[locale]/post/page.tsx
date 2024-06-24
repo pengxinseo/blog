@@ -1,7 +1,7 @@
 
 export const runtime = 'edge';
 import posts from "../../../../db/posts.json"; // 导入 JSON 数据
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import Markdown from 'markdown-to-jsx'
 
 export default function Post() {
   const components = {}; // 
@@ -23,9 +23,7 @@ export default function Post() {
       <h1 className="text-4xl font-bold pb-6 border-b mb-10">
         {post.title}
       </h1>
-      <MDXRemote
-      source={post.content}
-    />
+      <Markdown>{post.content}</Markdown>
     </div>
   );
 }
