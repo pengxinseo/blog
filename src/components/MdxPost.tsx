@@ -2,6 +2,7 @@ import React from 'react';
 import Markdown from 'markdown-to-jsx';
 import MdxAlert from '@/components/markdown/MdxAlert';
 import MdxBlockquote from '@/components/markdown/MdxBlockquote';
+import Toc from './Toc';
 import { notFound } from 'next/navigation';
 import postsEn from '@root/content/en.json';
 import postsZh from '@root/content/zh.json';
@@ -17,7 +18,6 @@ import postsRu from '@root/content/ru.json';
 import postsAr from '@root/content/ar.json';
 
 
-import Toc from './Toc';
 
 
 
@@ -70,14 +70,14 @@ const Post = ({ locale, slug }: { locale: string, slug: string }) => {
     return (
         <div className='px-4 mx-auto max-w-7xl mt-20 sm:px-6 lg:px-8'>
             <div className='markdown flex flex-col md:flex-row'>
-                <div className='w-full md:w-9/12 md:order-first'>
+                <div className='w-full md:w-8/12 md:order-first'>
                     <time className="block italic text-gray-500">{post.date}</time>
                     <h1 className="text-4xl font-bold pb-6 border-b mb-10">
                         {post.title}
                     </h1>
                     <Markdown options={markdownOptions}>{post.content}</Markdown>
                 </div>
-                <div className=' w-full md:w-3/12 sticky top-20'>
+                <div className=' w-full md:w-4/12 sticky top-20'>
                     <Toc />
                 </div>
             </div>

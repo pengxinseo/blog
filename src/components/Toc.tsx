@@ -18,7 +18,7 @@ export default function Toc() {
   }, [])
 
   return (
-    <div className="flex flex-col gap-2 sticky top-4">
+    <div className="flex flex-col gap-2 sticky top-4 md:px-10 px-0">
       <h5 className="text-slate-900 font-semibold text-sm leading-6 dark:text-slate-100">
         目录书🌲
       </h5>
