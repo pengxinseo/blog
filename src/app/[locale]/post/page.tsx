@@ -3,6 +3,22 @@ export const runtime = 'edge';
 import React from 'react';
 import Markdown from 'markdown-to-jsx';
 import posts from "../../../../db/posts.json";
+import MdxAlert from '@/components/MdxAlert';
+
+const MyCustomComponent = ({ prop1, prop2 }:{prop1:any,prop2:any}) => {
+  return (
+    <div className='text-red-300'>
+      Custom Component: {prop1}, {prop2}
+    </div>
+  );
+};
+
+const markdownOptions = {
+  overrides: {
+    MyCustomComponent: { component: MyCustomComponent },
+    MdxAlert: { component: MdxAlert }
+  }
+};
 
 export default function Post() {
   const slug = "advanced-techniques-for-cms-security";
@@ -18,7 +34,7 @@ export default function Post() {
       <h1 className="text-4xl font-bold pb-6 border-b mb-10">
         {post.title}
       </h1>
-      <Markdown>{post.content}</Markdown>
+      <Markdown options={markdownOptions}>{post.content}</Markdown>
     </div>
   );
 }
