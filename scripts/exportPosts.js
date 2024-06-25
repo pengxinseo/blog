@@ -2,29 +2,40 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
-const CONTENT_DIRECTORY = path.join(process.cwd(), 'db/posts');
-const OUTPUT_FILE = path.join(process.cwd(), 'db/posts.json');
+const BASE_CONTENT_DIRECTORY = path.join(process.cwd(), 'content');
+const OUTPUT_DIRECTORY = path.join(process.cwd(), 'content');
 
-const getAllPosts = () => {
-  const filenames = fs.readdirSync(CONTENT_DIRECTORY).filter(filename => filename.endsWith('.mdx'));
+const getAllPostsByLanguage = () => {
+  // 扫描 content 文件夹下所有的语言文件夹
+  const languageFolders = fs.readdirSync(BASE_CONTENT_DIRECTORY)
+    .filter(folder => !folder.startsWith('.')); // 排除以点开头的文件/文件夹，比如 .DS_Store
   
-  return filenames.map(filename => {
-    const filePath = path.join(CONTENT_DIRECTORY, filename);
-    const rawContent = fs.readFileSync(filePath, 'utf-8');
-    const { data, content } = matter(rawContent);
-    const { date, description, title } = data;
+  // 遍历每个语言文件夹，处理其中的 .mdx 文件
+  languageFolders.forEach(language => {
+    const languageDirectory = path.join(BASE_CONTENT_DIRECTORY, language);
 
-    return {
-      content,
-      date,
-      description,
-      slug: filename.replace('.mdx', ''),
-      title
-    };
+    const filenames = fs.readdirSync(languageDirectory)
+      .filter(filename => filename.endsWith(`.${language}.mdx`));
+    
+    const posts = filenames.map(filename => {
+      const filePath = path.join(languageDirectory, filename);
+      const rawContent = fs.readFileSync(filePath, 'utf-8');
+      const { data, content } = matter(rawContent);
+      const { date, description, title } = data;
+
+      return {
+        content,
+        date,
+        description,
+        slug: filename.replace(`.${language}.mdx`, ''),
+        title
+      };
+    });
+
+    const outputFilePath = path.join(OUTPUT_DIRECTORY, `${language}.json`);
+    fs.writeFileSync(outputFilePath, JSON.stringify(posts, null, 2));
+    console.log(`Posts exported to: ${outputFilePath}`);
   });
 };
 
-const posts = getAllPosts();
-fs.writeFileSync(OUTPUT_FILE, JSON.stringify(posts, null, 2));
-
-console.log('Posts exported to:', OUTPUT_FILE);
+getAllPostsByLanguage();

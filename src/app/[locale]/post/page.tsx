@@ -2,12 +2,15 @@
 export const runtime = 'edge';
 import React from 'react';
 import Markdown from 'markdown-to-jsx';
-import posts from "../../../../db/posts.json";
-import MdxAlert from '@/components/MdxAlert';
+import MdxAlert from '@/components/markdown/MdxAlert';
+import MdxBlockquote from '@/components/markdown/MdxBlockquote';
+
+import postsEn from '../../../../content/en.json';
+import postsJa from '../../../../content/ja.json';
 
 const MyCustomComponent = ({ prop1, prop2 }:{prop1:any,prop2:any}) => {
   return (
-    <div className='text-red-300'>
+    <div className='text-red-800'>
       Custom Component: {prop1}, {prop2}
     </div>
   );
@@ -16,13 +19,19 @@ const MyCustomComponent = ({ prop1, prop2 }:{prop1:any,prop2:any}) => {
 const markdownOptions = {
   overrides: {
     MyCustomComponent: { component: MyCustomComponent },
-    MdxAlert: { component: MdxAlert }
+    MdxAlert: { component: MdxAlert },
+    MdxBlockquote: {component:MdxBlockquote}
   }
 };
 
-export default function Post() {
-  const slug = "advanced-techniques-for-cms-security";
-  const post = posts.find((p) => p.slug === slug);
+export default function Post({params: {locale = ''}}) {
+  const slug = "demo";
+  let post;
+  if (locale === 'ja') {
+    post = postsJa.find((p) => p.slug === slug);
+  } else {
+    post = postsEn.find((p) => p.slug === slug);
+  }
   
   if (!post) {
     return <div>文章未找到</div>;
