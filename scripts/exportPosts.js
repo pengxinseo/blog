@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
-const BASE_DIRECTORY = path.join(process.cwd(), 'db/posts');
+const BASE_DIRECTORY = path.join(process.cwd(), 'content');
 const LANGUAGES = ['en', 'ja']; // Add more languages as needed
-const OUTPUT_DIRECTORY = path.join(process.cwd(), 'db');
+const OUTPUT_DIRECTORY = path.join(process.cwd(), 'content');
 
 const getAllPosts = (language) => {
   const CONTENT_DIRECTORY = path.join(BASE_DIRECTORY, language);
