@@ -77,8 +77,7 @@ const Post = ({ locale, slug }: { locale: string, slug: string }) => {
                     </h1>
                     <Markdown options={markdownOptions}>{post.content}</Markdown>
                 </div>
-                <div className='flex w-full md:w-3/12'>
-                    我是右边的效果
+                <div className=' w-full md:w-3/12 sticky top-20'>
                     <Toc />
                 </div>
             </div>
