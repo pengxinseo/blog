@@ -27,4 +27,4 @@ const getAllPosts = () => {
 const posts = getAllPosts();
 fs.writeFileSync(OUTPUT_FILE, JSON.stringify(posts, null, 2));
 
-console.log('Posts exported to:', OUTPUT_FILE);
+console.log('文章导出到:', OUTPUT_FILE);
