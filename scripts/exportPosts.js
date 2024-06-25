@@ -3,7 +3,7 @@ const path = require('path');
 const matter = require('gray-matter');
 
 const BASE_DIRECTORY = path.join(process.cwd(), 'content');
-const LANGUAGES = ['en', 'ja']; // Add more languages as needed
+const LANGUAGES = ['en', 'zh', 'ko', 'ja', 'tw', 'pt', 'es', 'de', 'fr', 'vi', 'ru', 'ar']; // Add more languages as needed
 const OUTPUT_DIRECTORY = path.join(process.cwd(), 'content');
 
 const getAllPosts = (language) => {
@@ -30,7 +30,7 @@ const getAllPosts = (language) => {
 const generateJsonFile = (language, posts) => {
   const OUTPUT_FILE = path.join(OUTPUT_DIRECTORY, `${language}.json`);
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(posts, null, 2));
-  console.log(`文章导出到: ${OUTPUT_FILE}`);
+  console.log(`【${language}】json导出成功: ${OUTPUT_FILE}`);
 };
 
 // Loop through each language and generate JSON file
