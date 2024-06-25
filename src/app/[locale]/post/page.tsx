@@ -1,3 +1,5 @@
+
+export const runtime = 'edge';
 import React from 'react';
 import Markdown from 'markdown-to-jsx';
 import posts from "../../../../db/posts.json";
