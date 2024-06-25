@@ -8,6 +8,10 @@ const OUTPUT_DIRECTORY = path.join(process.cwd(), 'content');
 
 const getAllPosts = (language) => {
   const CONTENT_DIRECTORY = path.join(BASE_DIRECTORY, language);
+  if (!fs.existsSync(CONTENT_DIRECTORY)) {
+    console.warn(`${language}文件夹为空: ${CONTENT_DIRECTORY}`);
+    return [];
+  }
   const filenames = fs.readdirSync(CONTENT_DIRECTORY).filter(filename => filename.endsWith('.mdx'));
   
   return filenames.map(filename => {
