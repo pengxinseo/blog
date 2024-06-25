@@ -36,7 +36,7 @@ const markdownOptions = {
     overrides: {
         MdxAlert: { component: MdxAlert },
         MdxBlockquote: { component: MdxBlockquote },
-        Code: {component: Code}
+        // Code: {component: Code}
     },
     slugify: (str:any) => {
         return str;
