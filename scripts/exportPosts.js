@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
+const chokidar = require('chokidar');
 
 const BASE_DIRECTORY = path.join(process.cwd(), 'content');
 const LANGUAGES = ['en', 'zh', 'ko', 'ja', 'tw', 'pt', 'es', 'de', 'fr', 'vi', 'ru', 'ar']; // Add more languages as needed

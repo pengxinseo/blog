@@ -16,11 +16,19 @@ import postsVi from '@root/content/vi.json';
 import postsRu from '@root/content/ru.json';
 import postsAr from '@root/content/ar.json';
 
+
+import Toc from './Toc';
+
+
+
 const markdownOptions = {
     //添加一些自定义的组件
     overrides: {
         MdxAlert: { component: MdxAlert },
         MdxBlockquote: { component: MdxBlockquote }
+    },
+    slugify: (str:any) => {
+        return str;
     }
 };
 
@@ -43,11 +51,11 @@ const getPostByLocaleAndSlug = (locale: string, slug: string) => {
 
     const posts = postsByLocale[locale];
     if (!posts) {
-        notFound(); 
+        notFound();
     }
-    const post = posts.find((p:any) => p.slug === slug);
+    const post = posts.find((p: any) => p.slug === slug);
     if (!post) {
-        notFound(); 
+        notFound();
     }
     return post;
 };
@@ -60,13 +68,22 @@ const Post = ({ locale, slug }: { locale: string, slug: string }) => {
     }
 
     return (
-        <div className='p-32 markdown'>
-            <time className="block italic text-gray-500">{post.date}</time>
-            <h1 className="text-4xl font-bold pb-6 border-b mb-10">
-                {post.title}
-            </h1>
-            <Markdown options={markdownOptions}>{post.content}</Markdown>
+        <div className='px-4 mx-auto max-w-7xl mt-20 sm:px-6 lg:px-8'>
+            <div className='markdown flex flex-col md:flex-row'>
+                <div className='w-full md:w-9/12 md:order-first'>
+                    <time className="block italic text-gray-500">{post.date}</time>
+                    <h1 className="text-4xl font-bold pb-6 border-b mb-10">
+                        {post.title}
+                    </h1>
+                    <Markdown options={markdownOptions}>{post.content}</Markdown>
+                </div>
+                <div className='flex w-full md:w-3/12'>
+                    我是右边的效果
+                    <Toc />
+                </div>
+            </div>
         </div>
+
     );
 };
 
